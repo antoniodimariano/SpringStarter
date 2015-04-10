@@ -12,16 +12,16 @@
 		<intercept-url pattern="/logout" access="permitAll" />
 		<intercept-url pattern="/accessdenied" access="permitAll" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		<form-login login-page="/login" default-target-url="/list" authentication-failure-url="/accessdenied" />
+		<form-login login-page="/login" default-target-url="/list" authentication-failure-url="/accessdenied" 
+			username-parameter="username"
+			password-parameter="password" />
 		<logout logout-success-url="/logout" />
 	</http>
 
 	<authentication-manager alias="authenticationManager">
-		<authentication-provider>
-			<user-service>
-				<user name="hellbreak" password="password" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
+		  <authentication-provider user-service-ref="loginService" >
+		  		<password-encoder hash="bcrypt" />
+		  </authentication-provider>
 	</authentication-manager>
 
 </beans:beans>

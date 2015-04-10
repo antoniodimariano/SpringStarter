@@ -28,6 +28,9 @@
                 <value>com.nowhereapp.domain.Employee</value> 
                 <value>com.nowhereapp.domain.Book</value> 
                 <value>com.nowhereapp.domain.Author</value> 
+                <value>com.nowhereapp.domain.User</value> 
+                <value>com.nowhereapp.domain.UserRole</value> 
+                
                 
             </list>  
         </property> 

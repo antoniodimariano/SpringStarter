@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nowhereapp.services.DataService;
 import com.nowhereapp.domain.Employee;
+import com.nowhereapp.domain.User;
 
 @Controller
 public class DataController {
@@ -27,9 +28,26 @@ public class DataController {
 	 */
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
+	/*
 	public String login(ModelMap model) {
 		return "login";
 	}
+	*/
+	public ModelAndView getLoginForm(@ModelAttribute User users,
+			@RequestParam(value="error", required=false) String error,
+			@RequestParam(value="logout", required=false) String logout) {
+		
+		String message="";
+		if( error != null ) {
+			message = "Incorrect username or password";
+		} else if ( logout != null ) {
+			message =" Logout successful!";
+		}
+		return new ModelAndView("login", "message", message);
+		
+		
+	}
+	
 	@RequestMapping(value="/accessdenied", method = RequestMethod.GET)
 	public String loginerror(ModelMap model) {
 		model.addAttribute("error","true");
@@ -37,6 +55,7 @@ public class DataController {
 	}
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
+		System.out.println("LOGOUT");
 		return "logout";
 	}
 	
